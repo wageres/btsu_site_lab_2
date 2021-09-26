@@ -54,6 +54,10 @@ body {
 	align-items: flex-end;
 }
 
+.menu__logo img {
+	object-fit: fill;
+	width: 100%;
+}
 
 .menu__links ul {
 	display: flex;
@@ -143,17 +147,13 @@ body {
 .nav__left {
 	width: 58px;
 	height: 58px;
-	background: url("../img/nav_button_left.png");
-	background-position: center;
-	background-repeat: no-repeat
+	background: url("../img/nav_button_left.png") center / cover no-repeat;
+	background-size: 100% cover;
 }
 
 .nav__right {
-	width: 58px;
-	height: 58px;
-	background: url("../img/nav_button_right.png");
-	background-position: center;
-	background-repeat: no-repeat
+	background: url("../img/nav_button_right.png") center / cover no-repeat;
+	background-size: 100% cover;
 }
 
 
@@ -165,17 +165,13 @@ body {
 }
 
 .nav__left:hover {
-	background: url("../img/nav_button_left_hover.png");
-	background-position: center;
-	background-repeat: no-repeat
+	background: url("../img/nav_button_left_hover.png") center / cover no-repeat;
+	background-size: 100% cover;
 }
 
 .nav__right:hover {
-	width: 58px;
-	height: 58px;
-	background: url("../img/nav_button_right_hover.png");
-	background-position: center;
-	background-repeat: no-repeat
+	background: url("../img/nav_button_right_hover.png") center / cover no-repeat;
+	background-size: 100% cover;
 }
 
 .slide_bottom__row {
@@ -506,7 +502,8 @@ body {
 }
 
 .footer__logo img{
-	max-width: 100%;
+	object-fit: fill;
+	width: 100%;
 }
 
 .footer__menu {
@@ -535,7 +532,7 @@ body {
 
 @media(max-width: 1600px) {
 	.container {
-		max-width: 1560px;
+		max-width: 1570px;
 	}
 
 	.product__row {
@@ -546,20 +543,20 @@ body {
 
 @media(max-width: 1400px) {
 	.container {
-		max-width: 1360px;
+		max-width: 1370px;
 	}
 }
 
 @media(max-width: 1200px) {
 	.container {
-		max-width: 970px;
+		max-width: 1140px;
 	}
 }
 
 
 @media(max-width: 992px) {
 	.container {
-		max-width: 750px;
+		max-width: 962px;
 	}
 
 	.popular__row {
@@ -580,7 +577,7 @@ body {
 
 @media(max-width: 750px) {
 	.container {
-		max-width: 600px;
+		max-width: 720px;
 	}
 
 	.menu__links ul li {
@@ -602,23 +599,113 @@ body {
 
 @media(max-width: 600px) {
 	.container {
-		max-width: 480px;
+		max-width: 570px;
+		padding: 0px 10px;
 	}
 
 	.menu__links ul li {
 	margin: 0px 5px 0px 0px;
 	}
 
+	.menu__links ul li a{
+	font-size: 12px;
+	}
+
 	.tagline__row h1 {
-		font-size: 40px;
+		font-size: 30px;
 	}
 	.nav__subtagline h2 {
-		font-size: 20px;
+		font-size: 15px;
+	}
+
+	.nav__left {
+		width: 40px;
+		height: 40px
+	}
+
+	.nav__right {
+		width: 40px;
+		height: 40px
 	}
 
 	.footer__menu ul li {
-		margin: 0px 15px 0px 0px;	
+		margin: 0px 12px 0px 0px;	
 	}
+
+	.footer__menu ul li a{
+	font-size: 12px;
+}
+
+
+}
+
+
+@media(max-width: 480px) {
+	.container {
+		max-width: 450px;
+		padding: 0px 5px;
+	}
+
+	.menu__logo img {
+	display: none;
+	}
+
+
+	.menu__links ul li {
+	margin: 0px 5px 0px 0px;
+	}
+
+	.menu__links ul li a{
+	font-size: 10px;
+	}
+
+	.tagline__row h1 {
+		font-size: 28px;
+	}
+
+	.nav__subtagline h2 {
+		font-size: 12px;
+	}
+
+	.nav__left {
+		width: 32px;
+		height: 32px
+	}
+
+	.nav__right {
+		width: 32px;
+		height: 32px
+	}
+
+	.footer__menu ul li {
+		margin: 0px 10px 0px 0px;	
+	}
+
+	.footer__menu ul li a{
+	font-size: 10px;
+
+}
+
+
+@media(max-width: 360px) {
+	.container {
+		max-width: 330px;
+		padding: 0px 5px;
+	}
+
+	.menu__links ul li a{
+	font-size: 8px;
+	}
+
+	.menu__links ul li {
+	margin: 0px 3px 0px 0px;
+	}
+
+
+	.footer__menu ul li a{
+	font-size: 8px;
+
+
 
 }
 
