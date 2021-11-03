@@ -7,8 +7,16 @@ html, body{
 		width: 210mm;
 	}
 
-header.header, footer.footer {
+header.header, footer.footer,{
 	display: none;
+}
+
+.header__menu {
+	display: none;
+} 
+
+img {
+	filter: brightness(120%) contrast(150%);
 }
 
 .main__filters {
@@ -38,7 +46,7 @@ header.header, footer.footer {
 
 
 
-
+/*
 .bike__photo {
 	background-color: red;
 }
@@ -52,7 +60,7 @@ header.header, footer.footer {
 	background-color: yellow;
 
 }
-
+*/
 
 
 
@@ -67,9 +75,7 @@ header.header, footer.footer {
 
 
 
-.bikes__row .bike img{
-	filter: brightness(120%) contrast(150%);
-}
+
 
 /*
 .bike {
