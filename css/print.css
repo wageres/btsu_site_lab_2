@@ -1,0 +1,85 @@
+@page {
+  margin: 20mm 10mm 20mm 20mm;
+}
+
+html, body{
+		height: 297mm;
+		width: 210mm;
+	}
+
+header.header, footer.footer {
+	display: none;
+}
+
+.main__filters {
+	flex: 0 1 35%;
+}
+
+.main__bikes {
+	flex: 0 1 65%;
+}
+
+.main .bikes__row {
+	flex-direction: column;
+}
+
+.bikes__row .bike {
+	margin: 1cm 0cm;
+}
+
+.bike .bike_row {
+		padding: 0.25cm;
+		page-break-inside: avoid;
+}
+
+
+
+
+
+
+
+
+.bike__photo {
+	background-color: red;
+}
+
+
+.bike__row  {
+	background-color: blue;
+}
+
+.bike {
+	background-color: yellow;
+
+}
+
+
+
+
+
+
+
+.bike__title, .bike__price, .bike__photo img{
+	 page-break-inside: avoid;
+	page-break-after: avoid;
+}
+
+
+
+
+.bikes__row .bike img{
+	filter: brightness(120%) contrast(150%);
+}
+
+/*
+.bike {
+	column-width: 35em;
+	min-width: 100%;
+	flex:  1 1 auto;
+}
+
+.bike__row {
+	column-width:  100%;
+	justify-content:  center;
+}
+*/
