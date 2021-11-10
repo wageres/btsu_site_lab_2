@@ -7,24 +7,34 @@ html, body{
 		width: 210mm;
 	}
 
-header.header, footer.footer,{
+header.header, footer.footer{
 	display: none;
 }
 
-.header__menu {
-	display: none;
-} 
 
 img {
 	filter: brightness(120%) contrast(150%);
 }
 
 .main__filters {
-	flex: 0 1 35%;
+	flex: 0 1 25%;
 }
 
 .main__bikes {
-	flex: 0 1 65%;
+	flex: 0 1 75%;
+}
+
+.button-res {
+	display: none;
+}
+
+.filter {
+		font-size: 14px;
+	}
+
+.filter input[type="text"] {
+	font-size: 12px;
+	max-width: 50px;
 }
 
 .main .bikes__row {
@@ -32,13 +42,38 @@ img {
 }
 
 .bikes__row .bike {
+	min-height: 300px;
 	margin: 1cm 0cm;
+	overflow:  hidden;
+	flex-grow: 1;
 }
 
 .bike .bike_row {
 		padding: 0.25cm;
-		page-break-inside: avoid;
 }
+
+.bike__photo {
+	display: flex;
+	justify-content: center;
+}
+
+.bike__photo img {
+	width: 60%;
+	height: 60%;
+}
+
+.bike__title {
+	font-size: 14px;
+	position: relative;
+	break-inside: avoid-page;
+
+}
+
+
+
+.bike__price {
+		font-size: 14px;
+	}
 
 
 
@@ -66,12 +101,12 @@ img {
 
 
 
-
+/*
 .bike__title, .bike__price, .bike__photo img{
 	 page-break-inside: avoid;
 	page-break-after: avoid;
 }
-
+*/
 
 
 

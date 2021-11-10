@@ -117,7 +117,7 @@ class BikesList
 
 
 		const PriceTemplate = '<div class="filter"><input value="{{min}}" class="min-price" type="text">-<input value="{{max}}" class="max-price" type="text"></div>';
-
+		const ResetTemplate = '<div class="button-res"><button class="button-reset">Сбросить</button></div>'
 		let output = '';
 
 		for(let prop in this.filters)
@@ -129,8 +129,8 @@ class BikesList
 				this.current_min_price = this.min_price;
 				this.current_max_price = this.max_price;
 
-				console.log(this.current_min_price);
-				console.log(this.current_max_price);
+				//console.log(this.current_min_price);
+				//console.log(this.current_max_price);
 
 
 				tmpLine += startTemplate.replace('{{name}}',this.filters[prop]);
@@ -155,6 +155,7 @@ class BikesList
 			}
 			output += tmpLine;
 		}
+		output += ResetTemplate;
 		$(selector).html(output);
 	}
 
@@ -259,7 +260,7 @@ class BikesList
 				this.filtrBikes.push(bike);
 			};
 		}
-
+		/*
 		this.ChangePrice();
 
 		
@@ -270,6 +271,7 @@ class BikesList
 		
 		this.current_max_price = this.max_price;
 		$('.filter .max-price')[0].value = this.current_max_price;
+		*/
 		
 	}
 
@@ -312,6 +314,11 @@ class BikesList
 
 			}
 		}
+	}
+
+	ResetFilters()
+	{
+		$(".main__filters .filter input:checkbox").removeAttr("checked");
 	}
 
 	
@@ -380,13 +387,12 @@ $(document).ready(function()
 			}
 			else
 			{
-				console.log(bk.current_min_price + " " + max);
+				//console.log(bk.current_min_price + " " + max);
 				bk.current_max_price = bk.max_price;
 			}
 		}
 		else 
 		{
-			console.log(2);
 			bk.current_max_price = bk.max_price;
 		}
 		
@@ -394,5 +400,20 @@ $(document).ready(function()
 		bk.ApplyPrice();
 		bk.ShowBikes('.bikes__row');
 		bk.ChangeFilters();
+	});
+
+	$('.button-reset').click(function() {
+		$(".main__filters .filter input:checkbox").removeAttr("checked");
+
+		let SelectedFilters = bk.SelectFilters();
+		bk.ApplyFilters(SelectedFilters);
+		bk.ShowBikes('.bikes__row');
+		bk.ChangeFilters();
+		bk.ChangePrice();
+		bk.current_min_price = bk.min_price;
+		bk.current_max_price = bk.max_price;
+		$('.filter .max-price').val(bk.max_price);
+		$('.filter .min-price').val(bk.min_price);
+
 	});
 }); 
