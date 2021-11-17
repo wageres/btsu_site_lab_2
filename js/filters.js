@@ -189,7 +189,7 @@ class BikesList
 	ShowBikes(selector) 
 	{
 
-		const startTemplate = '<article class="bike"><div class="bike__row"><div class="bike__photo"><img src="{{img}}"></div>'
+		const startTemplate = '<article class="bike"><div class="bike__row"><div class="bike__photo"><img src="{{img}}" alt="{{alt}}"></div>'
 		const midleTemplate = '<div class="bike__title">{{name}}</div><div class="bike__price">{{price}} ₽</div>'
 		const endTemplate = '</div></div></article>'
 
@@ -198,7 +198,7 @@ class BikesList
 		for (let bike of this.filtrBikes)
 		{
 			let tmpLine = '';
-			tmpLine += startTemplate.replace('{{img}}',bike.img);
+			tmpLine += startTemplate.replace('{{img}}',bike.img).replace("{{alt}}",bike.title);
 			tmpLine += midleTemplate.replace('{{name}}',bike.title).replace('{{price}}',bike.price);
 			tmpLine += endTemplate;
 
@@ -288,37 +288,109 @@ class BikesList
 		}
 	}
 
-
-	ChangeFilters()
+	
+	CollectingFilters()
 	{
-
+		this.PermitFilters = {}
 		for(let prop in this.filters)
 		{
 			if(prop != 'price')
 			{
 				let checkboxes = $(".filter input[name='"+prop+"']:checkbox");
+				this.PermitFilters[prop] = [];
 				
 				for(let checkbox of checkboxes)
 				{
-					let disable = true;
-					for(let bike of this.filtrBikes)
+					if(checkbox.checked == true)
 					{
-						if(bike[prop] == checkbox.value)
-						{
-							disable = false;
-							break;
-						}
-					}
-					checkbox.disabled = disable;
-				}
 
+						this.PermitFilters[prop].push(checkbox.value);
+					}
+				}
+				console.log(this.PermitFilters);
 			}
 		}
+
+		
 	}
+
+	ChangeFilters()
+	{
+		this.CollectingFilters();
+		let AllowedFilters = [];
+		for(let prop in this.filters)
+		{
+			if(prop != 'price')
+			{
+				if(this.PermitFilters[prop].length == 0 )
+				{
+					for(let bike of this.bikes)
+					{
+						if(bike.price >= this.current_min_price && bike.price <= this.current_max_price)
+						{
+							for(let bprop in bike)
+							{
+								if(bprop != prop && bprop != 'price' && bprop != 'title' && bprop != 'img')
+								{
+									if(AllowedFilters.indexOf(bike[bprop]) == -1)
+									{
+										AllowedFilters.push(bike[bprop]);
+									}
+								}
+							}
+						}
+					}
+				}
+				for(let val of this.PermitFilters[prop])
+				{
+					AllowedFilters.push(val);
+					
+					for(let bike of this.bikes)
+					{
+						if(bike.price >= this.current_min_price && bike.price <= this.current_max_price)
+						{
+							if(bike[prop] == val)
+							{
+								for(let bprop in bike)
+								{
+									if(bprop != prop && bprop != 'price' && bprop != 'title' && bprop != 'img')
+									{
+										if(AllowedFilters.indexOf(bike[bprop])  == -1)
+										{
+											AllowedFilters.push(bike[bprop]);
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		console.log(AllowedFilters);
+		let checkboxes = $(".filter input:checkbox");
+		for(let checkbox of checkboxes)
+		{
+			if(AllowedFilters.indexOf(checkbox.value) == -1)
+			{
+				checkbox.disabled = true;
+			}
+			else 
+			{
+				checkbox.disabled = false;
+			}
+		}	
+	}
+	
 
 	ResetFilters()
 	{
 		$(".main__filters .filter input:checkbox").removeAttr("checked");
+		for(let checkbox of checkboxes)
+		{
+			checkbox.disabled = false;
+		}	
 	}
 
 	
